@@ -1,4 +1,3 @@
-var zingchart = require('zingchart');
 var React = require('react');
 
 var Core = React.createClass({displayName: "Core",
@@ -9,6 +8,7 @@ var Core = React.createClass({displayName: "Core",
     },
     //Called after the render function.
     componentDidMount : function(){
+        var zingchart = require('zingchart');
         zingchart.render({
             id : this.props.id,
             width: (this.props.width || 600),
@@ -23,11 +23,13 @@ var Core = React.createClass({displayName: "Core",
         return !(JSON.stringify(nextProps.data) === JSON.stringify(this.props.data)) ;
     },
     componentWillUpdate : function(nextProps){
+        var zingchart = require('zingchart');
         zingchart.exec(this.props.id, 'setdata', {
             data : nextProps.data
         });
     },
     componentWillUnmount : function(){
+        var zingchart = require('zingchart');
         zingchart.exec(this.props.id, 'destroy');
     }
 });
